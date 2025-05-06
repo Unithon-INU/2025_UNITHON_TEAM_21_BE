@@ -1,4 +1,6 @@
 spring:
+  jwt:
+    secret: vmfhaltmskdlstkfkdgodyroqkfwkdbalroqkfwkdbalaaaaaaaaaaaaaaaabbbbb
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: ${SPRING_DATASOURCE_URL:jdbc:mysql://localhost:3306/uniton}
@@ -14,3 +16,11 @@ spring:
       hibernate:
         format_sql: true
         default_batch_fetch_size: 100
+
+app:
+  jwtRefreshExpirationMs: 604800000
+
+
+kakao:
+  client-id: a1b1677f84f92240f21d384d5517c525
+  redirect-uri: http://localhost:8080/api/login/oauth/kakao
