@@ -1,4 +1,9 @@
 spring:
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
   jwt:
     secret: vmfhaltmskdlstkfkdgodyroqkfwkdbalroqkfwkdbalaaaaaaaaaaaaaaaabbbbb
   datasource:
@@ -20,7 +25,10 @@ spring:
 app:
   jwtRefreshExpirationMs: 604800000
 
+openapi:
+  1365:
+    secret: O%2FYG6D1EDHUT95t3q4Qc6lKexVz58TuhiEwuaZa2oEpaB4gzYQ%2BXW%2BIl9IBLWhrRIXy%2FLcA8h2rPuES%2FeY5MzA%3D%3D
 
 kakao:
   client-id: a1b1677f84f92240f21d384d5517c525
-  redirect-uri: http://localhost:8080/api/login/oauth/kakao
+  redirect-uri: "http://localhost:8080/api/login/oauth/kakao"
