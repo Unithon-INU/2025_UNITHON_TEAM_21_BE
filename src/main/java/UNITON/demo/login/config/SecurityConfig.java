@@ -54,6 +54,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests((auth)->auth
                         .requestMatchers(
                                 "/api/join/email","/api/join/oauth","/login","/api/login/oauth/kakao","/api/oauth/refreshtoken"
+                                ,"/api/volunteer/**"
                         ).permitAll()
                         .anyRequest().authenticated()
                 )
