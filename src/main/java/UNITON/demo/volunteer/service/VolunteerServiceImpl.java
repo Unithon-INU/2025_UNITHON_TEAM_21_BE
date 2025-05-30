@@ -1,17 +1,14 @@
 package UNITON.demo.volunteer.service;
 
-import UNITON.demo.login.entity.UserEntity;
 import UNITON.demo.login.repository.UserRepository;
 import UNITON.demo.volunteer.component.VolunteerOpenApiClient;
 import UNITON.demo.volunteer.component.VolunteerXmlParser;
 import UNITON.demo.volunteer.dto.VolunteerDetailDto;
 import UNITON.demo.volunteer.dto.VolunteerDto;
-import jakarta.annotation.Nullable;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -22,8 +19,9 @@ public class VolunteerServiceImpl implements VolunteerService{
     /*private final BookmarkRepository bookmarkRepository;*/
 
     @Override
-    public List<VolunteerDto> searchByKeyword(String keyword, int pageNo, int numOfRows) {
-        String xml = openApiClient.searchByKeyword(keyword, pageNo, numOfRows);
+    public List<VolunteerDto> searchByKeyword(String schCateGu,String keyword) {
+        String xml = openApiClient.searchByKeyword(schCateGu,keyword);
+        System.out.println(xml);
         return xmlParser.parseVolunteerList(xml);
     }
 
@@ -32,7 +30,22 @@ public class VolunteerServiceImpl implements VolunteerService{
         String xml = openApiClient.getAllVolunteers(pageNo, numOfRows);
         return xmlParser.parseVolunteerList(xml);
     }
-    /*@Override
+
+    @Override
+    public List<VolunteerDto> filterByCategoryList(String upperClCode, int pageNo, int numOfRows) {
+        String xml = openApiClient.filterByCategoryList(upperClCode,pageNo, numOfRows);
+        return xmlParser.parseVolunteerList(xml);
+    }
+
+
+    @Override
+    public VolunteerDetailDto getDetail(String progrmRegistNo) {
+        String xml = openApiClient.getDetail(progrmRegistNo);
+        return xmlParser.parseVolunteerDetail(xml);
+    }
+
+
+/*@Override
     public List<VolunteerDto> findByPeriod(String start, String end, int pageNo) {
         return List.of();
     }
@@ -47,15 +60,6 @@ public class VolunteerServiceImpl implements VolunteerService{
         return List.of();
     }
 
-    @Override
-    public VolunteerDetailDto getDetail(String progrmRegistNo) {
-        return null;
-    }
-
-    @Override
-    public void toggleBookmark(String progrmRegistNo, String username) {
-
-    }
 
     @Override
     public List<VolunteerDto> getBookmarks(String username) {
