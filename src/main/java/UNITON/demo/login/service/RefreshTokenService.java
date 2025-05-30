@@ -22,8 +22,10 @@ public class RefreshTokenService {
     private Long refreshTokenDurationMs;
 
 
-    public RefreshToken createorUpdateRefreshToken(Integer userId) {
+    public RefreshToken createorUpdateRefreshToken(Long userId) {
         Optional<RefreshToken> existingToken = refreshTokenRepository.findByUserId(userId);
+
+        this.verifyExpiration(existingToken.get());
 
         RefreshToken refreshToken;
         if (existingToken.isPresent()) {

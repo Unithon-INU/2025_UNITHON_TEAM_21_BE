@@ -51,12 +51,8 @@ public class SecurityConfig {
                 .csrf((auth) ->auth.disable())
                 .formLogin((auth) ->auth.disable())
                 .httpBasic((auth) ->auth.disable()) //체이닝 적용
-                .authorizeHttpRequests((auth)->auth
-                        .requestMatchers(
-                                "/api/join/email","/api/join/oauth","/login","/api/login/oauth/kakao","/api/oauth/refreshtoken"
-                                ,"/api/volunteer/**"
-                        ).permitAll()
-                        .anyRequest().authenticated()
+                .authorizeHttpRequests((auth) -> auth
+                        .anyRequest().permitAll()
                 )
                 .cors(withDefaults())
                 .exceptionHandling((exceptions) -> exceptions

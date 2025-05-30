@@ -1,12 +1,11 @@
 package UNITON.demo.volunteer.controller;
 
+import UNITON.demo.volunteer.dto.VolunteerDetailDto;
 import UNITON.demo.volunteer.dto.VolunteerDto;
 import UNITON.demo.volunteer.service.VolunteerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,11 +28,21 @@ public class VolunteerController {
     }
 
     @GetMapping("/search")
-    public List<VolunteerDto> search(@RequestParam String keyword,@RequestParam String schCateGu,
+    public List<VolunteerDto> search(@RequestParam String schCateGu,@RequestParam String keyword) {
+        return volunteerService.searchByKeyword(schCateGu, keyword);
+    }
+
+    @GetMapping("/filter")
+    public List<VolunteerDto> filter(@RequestParam String upperClCode,
                                      @RequestParam(defaultValue = "1") int pageNo,
                                      @RequestParam(defaultValue = "10") int numOfRows) {
-        return volunteerService.searchByKeyword(keyword, pageNo, numOfRows);
+        return volunteerService.filterByCategoryList(upperClCode, pageNo, numOfRows);
     }
+    @GetMapping("/detail")
+    public VolunteerDetailDto detail(@RequestParam String progrmRegistNo) {
+        return volunteerService.getDetail(progrmRegistNo);
+    }
+
 
     /*@GetMapping("/period")
     public List<VolunteerDto> findByPeriod(@RequestParam String startDate,

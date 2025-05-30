@@ -27,8 +27,8 @@ app:
 
 openapi:
   1365:
-    secret: O%2FYG6D1EDHUT95t3q4Qc6lKexVz58TuhiEwuaZa2oEpaB4gzYQ%2BXW%2BIl9IBLWhrRIXy%2FLcA8h2rPuES%2FeY5MzA%3D%3D
+    secret: kktz5VWig27i6B0yiEAKhnpA%2F1s0ZJHD1sTIZDFzpr%2BH%2Bu8QMHKP%2BLTd7Loev4zHSDktWB5cC0xnTM3FAbV7SA%3D%3D
 
 kakao:
   client-id: a1b1677f84f92240f21d384d5517c525
-  redirect-uri: "http://localhost:8080/api/login/oauth/kakao"
+  redirect-uri: "http://localhost:8080/api/kakao/token"

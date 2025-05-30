@@ -33,16 +33,26 @@ public class VolunteerOpenApiClient {
     }
     private static final String BASE = "http://openapi.1365.go.kr/openapi/service/rest/VolunteerPartcptnService";
 
-    public String searchByKeyword(String keyword, int pageNo, int numOfRows) {
+    public String searchByKeyword(String schCateGu,String keyword) {
         return get(BASE + "/getVltrSearchWordList", Map.of(
-                "keyword", keyword,
-                "pageNo", String.valueOf(pageNo),
-                "numOfRows", String.valueOf(numOfRows)
+                "schCateGu",schCateGu,
+                "keyword", keyword
         ));
+    }
+    public String getDetail(String progrmRegistNo) {
+        return get(BASE + "/getVltrPartcptnItem", Map.of(
+                "progrmRegistNo", progrmRegistNo));
     }
 
     public String getAllVolunteers(int pageNo, int numOfRows) {
         return get(BASE + "/getVltrSearchWordList", Map.of(
+                "pageNo", String.valueOf(pageNo),
+                "numOfRows", String.valueOf(numOfRows)
+        ));
+    }
+    public String filterByCategoryList(String upperClCode, int pageNo, int numOfRows) {
+        return get(BASE + "/getVltrSearchWordList", Map.of(
+                "upperClCode",upperClCode,
                 "pageNo", String.valueOf(pageNo),
                 "numOfRows", String.valueOf(numOfRows)
         ));
@@ -68,11 +78,9 @@ public class VolunteerOpenApiClient {
                 "upperClCode", category,
                 "pageNo", String.valueOf(pageNo)
         ));
-    }
-
-    public String getDetail(String id) {
-        return get(BASE + "/getVltrPartcptnItem", Map.of("progrmRegistNo", id));
     }*/
+
+
 
     private String get(String baseUrl, Map<String, String> params) {
         UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(baseUrl)
@@ -104,7 +112,10 @@ public class VolunteerOpenApiClient {
         System.out.println("📦 응답 XML = \n" + xml);
 
         return xml;
+
     }
+
+
 }
 
 

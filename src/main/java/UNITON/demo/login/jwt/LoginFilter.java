@@ -86,7 +86,7 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
         CustomerUserDetails customerUserDetails=(CustomerUserDetails) authentication.getPrincipal();
 
         String email=customerUserDetails.getUsername();
-        Integer userID= customerUserDetails.getUserId();
+        Long userID= customerUserDetails.getUserId();
 
         Collection<? extends GrantedAuthority> authorities=authentication.getAuthorities();
         Iterator<? extends  GrantedAuthority> iterator=authorities.iterator();
