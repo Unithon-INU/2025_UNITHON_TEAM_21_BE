@@ -15,7 +15,6 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class RefreshTokenService {
     private final RefreshTokenRepository refreshTokenRepository;
-    private final RefreshTokenService refreshTokenService;
     private final UserRepository userRepository; // 유저 찾기용
 
     // yml에 정의된 만료시간 (예: 7일)
@@ -26,7 +25,7 @@ public class RefreshTokenService {
     public RefreshToken createorUpdateRefreshToken(Long userId) {
         Optional<RefreshToken> existingToken = refreshTokenRepository.findByUserId(userId);
 
-        refreshTokenService.verifyExpiration(existingToken.get());
+        this.verifyExpiration(existingToken.get());
 
         RefreshToken refreshToken;
         if (existingToken.isPresent()) {
