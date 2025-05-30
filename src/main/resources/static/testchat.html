@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>WebSocket Chat Test</title>
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/stompjs@2.3.3/lib/stomp.min.js"></script>
+</head>
+<body>
+<h2>🌐 WebSocket 채팅 테스트</h2>
+
+<label>내 이메일:</label>
+<input type="text" id="senderEmail" value="user1@example.com" /><br>
+
+<label>상대방 ID:</label>
+<input type="number" id="targetUserId" value="2" /><br>
+
+<label>메시지:</label>
+<input type="text" id="messageContent" placeholder="메시지를 입력하세요" /><br>
+
+<button onclick="connect()">Connect</button>
+<button onclick="sendMessage()">Send Message</button>
+
+<pre id="chatLog" style="border:1px solid #ccc; padding:10px; margin-top:10px; height:200px; overflow-y:scroll;"></pre>
+
+<script>
+    let stompClient = null;
+    let chatRoomId = 2; // 일단 수동 지정 (테스트용)
+
+    function connect() {
+  const protocol = window.location.protocol === 'https:' ? 'https://' : 'http://';
+  const socket = new SockJS(protocol + window.location.host + '/ws-chat');
+  stompClient = Stomp.over(socket);
+
+  stompClient.connect({}, function (frame) {
+    console.log('✅ Connected: ' + frame);
+    appendLog('📡 WebSocket 연결됨');
+
+    // ✅ 연결 후 구독
+    stompClient.subscribe('/topic/chatroom/' + chatRoomId, function (message) {
+      const data = JSON.parse(message.body);
+      const myEmail = document.getElementById("senderEmail").value;
+      const sender = data.senderEmail === myEmail ? '나' : (data.senderNickname || data.senderEmail || '익명');
+      appendLog(`💬 [${sender}] ${data.content}`);
+    });
+  });
+}
+
+    function sendMessage() {
+        const senderEmail = document.getElementById("senderEmail").value;
+        const targetUserId = document.getElementById("targetUserId").value;
+        const content = document.getElementById("messageContent").value;
+
+        const payload = {
+         chatRoomId: 2,
+        senderEmail: senderEmail,
+        targetUserId: Number(targetUserId),
+        targetOrganizationId: null, // 🔥 이거 꼭 필요
+        content: content,
+        fromUser: true,
+        sentAt: new Date().toISOString()
+        };
+
+         stompClient.send("/app/chat.send", {
+        'content-type': 'application/json; charset=UTF-8'
+         }, JSON.stringify(payload));
+        document.getElementById("messageContent").value = "";
+     }
+
+    function appendLog(message) {
+      const log = document.getElementById("chatLog");
+      log.innerText += message + "\n";
+      log.scrollTop = log.scrollHeight;
+    }
+</script>
+</body>
+</html>
