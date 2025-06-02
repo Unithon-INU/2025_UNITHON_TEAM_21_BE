@@ -15,9 +15,12 @@ public class Organization {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;             // 기관 이름
-    private String region;           // 지역명
+    private String name;            // 기관 이름
+    private String address;          //
     private String contactEmail;
-    private String phoneNumber;      // 기관 연락처
-    private String profileImageUrl;  // 썸네일용
+    private String accountnumber;   // 계좌번호
+    private String phoneNumber;
+
+    private int donationGoalAmount;     // 🎯 목표 금액
+    private int totalReceivedAmount = 0; // 💰 누적 수령 금액
 }

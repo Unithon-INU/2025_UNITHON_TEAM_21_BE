@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface UserRepository extends JpaRepository<UserEntity, Integer> {
+public interface UserRepository extends JpaRepository<UserEntity, Long> {
     // 이메일로 유저 찾기 (로그인, 중복체크 등에서 사용)
     Optional<UserEntity> findByEmail(String email);
 
