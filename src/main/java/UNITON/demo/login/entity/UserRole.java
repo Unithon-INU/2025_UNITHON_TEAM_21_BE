@@ -1,5 +1,5 @@
 package UNITON.demo.login.entity;
 
 public enum UserRole {
-    USER, ADMIN
+    USER, ADMIN,ORG_ADMIN
 }

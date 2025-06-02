@@ -32,3 +32,7 @@ openapi:
 kakao:
   client-id: a1b1677f84f92240f21d384d5517c525
   redirect-uri: "http://localhost:8080/api/kakao/token"
+
+blockchain:
+  rpc-url: https://eth-sepolia.g.alchemy.com/v2/ZSHRWWYeydgV-uBQDS8EhdLiSa7c4g7p
+  private-key: 5f5804b6df2829e7938d0b795e8978370907abd7085635cd4b45ff945073f678
