@@ -25,11 +25,10 @@ public class RefreshTokenService {
     public RefreshToken createorUpdateRefreshToken(Long userId) {
         Optional<RefreshToken> existingToken = refreshTokenRepository.findByUserId(userId);
 
-        this.verifyExpiration(existingToken.get());
-
         RefreshToken refreshToken;
         if (existingToken.isPresent()) {
             // 2. 있으면 갱신
+            this.verifyExpiration(existingToken.get());
             refreshToken = existingToken.get();
             refreshToken.setToken(UUID.randomUUID().toString());
             refreshToken.setExpiryDate(Instant.now().plusMillis(refreshTokenDurationMs));
@@ -55,13 +54,12 @@ public class RefreshTokenService {
      * 토큰 만료 여부 확인
      * 만료되었으면 DB에서 삭제하고 예외 발생
      */
-    public RefreshToken verifyExpiration(RefreshToken token) {
+    public void verifyExpiration(RefreshToken token) {
         if (token.getExpiryDate().compareTo(Instant.now()) < 0) {
             // 이미 만료됨 → DB에서 삭제
             refreshTokenRepository.delete(token);
             throw new RuntimeException("Refresh token was expired. Please login again.");
         }
-        return token;
     }
 
     /**

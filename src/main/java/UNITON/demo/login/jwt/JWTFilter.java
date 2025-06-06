@@ -27,6 +27,13 @@ public class JWTFilter extends OncePerRequestFilter {
 
         String path = request.getRequestURI();
 
+        System.out.println(">> 요청 경로: " + path);
+        // ✅ 예외 경로 추가
+        if (path.startsWith("/api/join") || path.equals("/login") ) {
+            filterChain.doFilter(request, response);
+            return;
+        }
+
         if (path.startsWith("/api/login/oauth/kakao")) {
             filterChain.doFilter(request, response);
             return;
