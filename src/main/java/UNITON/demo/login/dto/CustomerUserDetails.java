@@ -54,6 +54,10 @@ public class CustomerUserDetails implements UserDetails {
         return true;  // 계정 활성화 상태
     }
 
+    public UserEntity getUserEntity() {
+        return userEntity;
+    }
+
     // 유저 추가 정보 getter
     public String getNickname() {
         return userEntity.getNickname();

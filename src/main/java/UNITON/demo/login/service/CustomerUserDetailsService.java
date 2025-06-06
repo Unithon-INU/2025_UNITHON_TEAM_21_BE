@@ -1,6 +1,7 @@
 package UNITON.demo.login.service;
 
 import UNITON.demo.login.dto.CustomerUserDetails;
+import UNITON.demo.login.entity.OrganizationAdmin;
 import UNITON.demo.login.entity.UserEntity;
 import UNITON.demo.login.repository.UserRepository;
 import lombok.RequiredArgsConstructor;

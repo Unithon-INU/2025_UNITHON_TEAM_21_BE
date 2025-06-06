@@ -46,6 +46,8 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         // 클라이언트가 연결할 WebSocket endpoint
-        registry.addEndpoint("/ws-chat").setAllowedOriginPatterns("*").withSockJS();
+        registry.addEndpoint("/ws-chat")
+                .setAllowedOrigins("http://127.0.0.1:5500", "http://localhost:5500", "https://63a4-106-101-8-197.ngrok-free.app")
+                .withSockJS();
     }
 }
