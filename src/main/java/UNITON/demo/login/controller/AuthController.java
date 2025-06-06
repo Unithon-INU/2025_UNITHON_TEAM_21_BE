@@ -23,7 +23,7 @@ public class AuthController {
     private final RefreshTokenService refreshTokenService;
     private final JWTUtil jwtUtil;
 
-    @PostMapping("/refreshtoken")
+    @PostMapping("/accesstoken")
     public ResponseEntity<?> refreshToken(@RequestBody RefreshRequestDto request) {
         String refreshToken = request.getRefreshToken();
 
