@@ -25,7 +25,7 @@
 
 <script>
     let stompClient = null;
-    let chatRoomId = 2; // 일단 수동 지정 (테스트용)
+    let chatRoomId = 3; // 일단 수동 지정 (테스트용)
 
     function connect() {
   const protocol = window.location.protocol === 'https:' ? 'https://' : 'http://';
@@ -52,7 +52,7 @@
         const content = document.getElementById("messageContent").value;
 
         const payload = {
-         chatRoomId: 2,
+         chatRoomId: 3,
         senderEmail: senderEmail,
         targetUserId: Number(targetUserId),
         targetOrganizationId: null, // 🔥 이거 꼭 필요
