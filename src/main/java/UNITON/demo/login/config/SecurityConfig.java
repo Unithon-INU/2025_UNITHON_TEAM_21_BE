@@ -5,11 +5,8 @@ import UNITON.demo.login.jwt.JWTUtil;
 import UNITON.demo.login.jwt.LoginFilter;
 import UNITON.demo.login.repository.UserRepository;
 import UNITON.demo.login.service.RefreshTokenService;
-import jakarta.persistence.Entity;
-import jakarta.servlet.Filter;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -51,8 +48,12 @@ public class SecurityConfig {
                 .csrf((auth) ->auth.disable())
                 .formLogin((auth) ->auth.disable())
                 .httpBasic((auth) ->auth.disable()) //체이닝 적용
+                /*.authorizeHttpRequests((auth) -> auth.
+                        requestMatchers("/login","/api/join/email","/org/login", "/org/join","/api/volunteer/**","/api/org/{id}").permitAll()  // 로그인 관련 경로만 허용
+                        .anyRequest().authenticated()  // 나머지는 토큰 필수
+                )*/
                 .authorizeHttpRequests((auth) -> auth
-                        .anyRequest().permitAll()
+                        .anyRequest().permitAll()  // 모든 요청 허용
                 )
                 .cors(withDefaults())
                 .exceptionHandling((exceptions) -> exceptions
