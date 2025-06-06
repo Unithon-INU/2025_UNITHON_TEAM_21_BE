@@ -1,9 +1,4 @@
 spring:
-  http:
-    encoding:
-      charset: UTF-8
-      enabled: true
-      force: true
   jwt:
     secret: vmfhaltmskdlstkfkdgodyroqkfwkdbalroqkfwkdbalaaaaaaaaaaaaaaaabbbbb
   datasource:
@@ -36,3 +31,10 @@ kakao:
 blockchain:
   rpc-url: https://eth-sepolia.g.alchemy.com/v2/ZSHRWWYeydgV-uBQDS8EhdLiSa7c4g7p
   private-key: 5f5804b6df2829e7938d0b795e8978370907abd7085635cd4b45ff945073f678
+
+server:
+  servlet:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
