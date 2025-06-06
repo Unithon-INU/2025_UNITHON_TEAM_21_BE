@@ -36,7 +36,28 @@ public class BlockchainServiceImpl implements BlockchainService{
             ).send();
 
         } catch (Exception e) {
+            e.printStackTrace();
             throw new RuntimeException("스마트컨트랙트 호출 실패", e);
         }
     }
+
+    @Override
+    public BigInteger getTotalDonations(Long orgId) {
+        try {
+            DonationContract contract = DonationContract.load(
+                    contractAddress,
+                    web3j,
+                    credentials,
+                    new StaticGasProvider(
+                            BigInteger.valueOf(20000000000L),
+                            BigInteger.valueOf(6721975)
+                    )
+            );
+            return contract.totalDonations(BigInteger.valueOf(orgId)).send();
+        } catch (Exception e) {
+            e.printStackTrace(); // <-- 여기로 실제 오류 로그 출력됨
+            throw new RuntimeException("블록체인 조회 실패", e);
+        }
+    }
+
 }
