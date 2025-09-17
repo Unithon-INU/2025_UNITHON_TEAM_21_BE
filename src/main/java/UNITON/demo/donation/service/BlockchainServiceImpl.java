@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.web3j.crypto.Credentials;
 import org.web3j.protocol.Web3j;
+import org.web3j.protocol.core.methods.response.TransactionReceipt;
 import org.web3j.tx.gas.StaticGasProvider;
 
 import java.math.BigInteger;
@@ -18,22 +19,24 @@ public class BlockchainServiceImpl implements BlockchainService{
     private final String contractAddress = "0x274b0bb2a1b9ddaa7eef17a825513509913d6fee";
 
     @Override
-    public void recordDonation(Long organizationId, int amount) {
+    public String recordDonation(Long organizationId, int amount) {
         try {
             DonationContract contract = DonationContract.load(
                     contractAddress,
                     web3j,
                     credentials,
                     new StaticGasProvider(
-                            BigInteger.valueOf(20000000000L),
-                            BigInteger.valueOf(6721975)
+                            BigInteger.valueOf(5_000_000_000L),
+                            BigInteger.valueOf(300_000)
                     )
             );
 
-            contract.donate(
+            TransactionReceipt receipt=contract.donate(
                     BigInteger.valueOf(organizationId),
                     BigInteger.valueOf(amount)
             ).send();
+
+            return receipt.getTransactionHash();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -49,8 +52,8 @@ public class BlockchainServiceImpl implements BlockchainService{
                     web3j,
                     credentials,
                     new StaticGasProvider(
-                            BigInteger.valueOf(20000000000L),
-                            BigInteger.valueOf(6721975)
+                            BigInteger.valueOf(5_000_000_000L),
+                            BigInteger.valueOf(300_000)
                     )
             );
             return contract.totalDonations(BigInteger.valueOf(orgId)).send();

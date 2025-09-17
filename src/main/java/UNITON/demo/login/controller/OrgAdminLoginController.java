@@ -1,13 +1,12 @@
 package UNITON.demo.login.controller;
 
-import UNITON.demo.login.dto.LoginRequestDto;
-import UNITON.demo.login.dto.LoginResponseDto;
-import UNITON.demo.login.dto.ErrorResponseDto;
-import UNITON.demo.login.dto.ResponseDto;
+import UNITON.demo.login.dto.*;
+import UNITON.demo.login.entity.OrgRefreshToken;
 import UNITON.demo.login.entity.OrganizationAdmin;
 import UNITON.demo.login.entity.RefreshToken;
 import UNITON.demo.login.jwt.JWTUtil;
 import UNITON.demo.login.repository.OrganizationAdminRepository;
+import UNITON.demo.login.service.OrgRefreshTokenService;
 import UNITON.demo.login.service.RefreshTokenService;
 
 import lombok.RequiredArgsConstructor;
@@ -31,7 +30,7 @@ public class OrgAdminLoginController {
     private final OrganizationAdminRepository orgAdminRepo;
     private final BCryptPasswordEncoder passwordEncoder;
     private final JWTUtil jwtUtil;
-    private final RefreshTokenService refreshTokenService;
+    private final OrgRefreshTokenService orgrefreshTokenService;
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequestDto dto) {
@@ -44,14 +43,17 @@ public class OrgAdminLoginController {
         }
 
         String accessToken = jwtUtil.createJwt(admin.getEmail(), "ORG_ADMIN", 60 * 60 * 1000L);
-        RefreshToken refreshToken = refreshTokenService.createorUpdateRefreshToken(admin.getId());
+        OrgRefreshToken refreshToken = orgrefreshTokenService.createOrUpdateRefreshToken(admin.getId());
 
-        LoginResponseDto responseDto = LoginResponseDto.builder()
+        LoginOrgResponseDto responseDto = LoginOrgResponseDto.builder()
                 .accessToken(accessToken)
                 .refreshToken(refreshToken.getToken())
                 .email(admin.getEmail())
                 .nickname(admin.getAdminname())
                 .message("기관 로그인 성공")
+                .id(admin.getId())
+                .org_id(admin.getOrganization().getId())
+                .userRole(1)
                 .build();
 
         return ResponseEntity.ok(responseDto);

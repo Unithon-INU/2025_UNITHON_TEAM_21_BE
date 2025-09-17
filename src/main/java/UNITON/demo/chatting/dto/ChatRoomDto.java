@@ -24,14 +24,27 @@ public class ChatRoomDto {
         dto.setLastMessage(room.getLastMessage());
         dto.setUpdatedAt(room.getUpdatedAt());
 
-        if (room.getOrganization() != null) {
-            dto.setTargetName(room.getOrganization().getName());
-            dto.setOrganization(true);
+        // ✅ 기관 기반 채팅방만 처리
+        dto.setTargetName(room.getOrganization().getName());
+        dto.setOrganization(true);
+
+        return dto;
+    }
+
+    public static ChatRoomDto fromForOrganization(ChatRoom room) {
+        ChatRoomDto dto = new ChatRoomDto();
+        dto.setId(room.getId());
+        dto.setLastMessage(room.getLastMessage());
+        dto.setUpdatedAt(room.getUpdatedAt());
+
+        // 기관 기준 → 상대는 유저
+        if (room.getUser() != null) {
+            dto.setTargetName(room.getUser().getNickname());
         } else {
-            UserEntity target = room.getUser().equals(me) ? room.getOtherUser() : room.getUser();
-            dto.setTargetName(target.getNickname());
-            dto.setOrganization(false);
+            dto.setTargetName("알 수 없음");
         }
+
+        dto.setOrganization(false); // 기관 입장에서 상대는 유저
 
         return dto;
     }

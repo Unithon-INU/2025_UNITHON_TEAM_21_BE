@@ -11,5 +11,6 @@ import java.util.Optional;
 public interface OrganizationAdminRepository extends JpaRepository<OrganizationAdmin,Long> {
     // 이메일로 기관 관리자 조회 (email 필드를 로그인 식별자로 쓴다면)
     Optional<OrganizationAdmin> findByEmail(String email);
+    boolean existsByOrganizationId(Long organizationId);;
 
 }
