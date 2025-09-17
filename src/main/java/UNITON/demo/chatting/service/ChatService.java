@@ -1,6 +1,6 @@
 package UNITON.demo.chatting.service;
 
-import UNITON.demo.chatting.dto.ChatMessageDto;
+/*import UNITON.demo.chatting.dto.ChatMessageDto;
 import UNITON.demo.chatting.entity.ChatRoom;
 import UNITON.demo.chatting.entity.Message;
 import UNITON.demo.chatting.repository.OrganizationRepository;
@@ -21,7 +21,7 @@ public class ChatService {
     /**
      * WebSocket 메시지 수신 → 저장 + 전송 DTO 반환
      */
-    public ChatMessageDto handleIncomingMessage(ChatMessageDto chatMessageDto, String senderEmail) {
+    /*public ChatMessageDto handleIncomingMessage(ChatMessageDto chatMessageDto, String senderEmail) {
 
         System.out.println("💬 handleIncomingMessage 호출됨!");
 
@@ -54,4 +54,4 @@ public class ChatService {
                 .sentAt(savedMessage.getSentAt())
                 .build();
     }
-}
+}*/

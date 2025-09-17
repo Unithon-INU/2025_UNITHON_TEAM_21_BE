@@ -1,5 +1,6 @@
 package UNITON.demo.donation.controller;
 
+import UNITON.demo.donation.dto.DonationReceiptDto;
 import UNITON.demo.donation.service.DonationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -16,15 +17,15 @@ import org.springframework.web.bind.annotation.RestController;
 public class OrgDonationController {
     private final DonationService donationService;
 
-    @PostMapping("/{id}/confirm")
-    public ResponseEntity<Void> confirmDonation(@PathVariable Long orgid) {
-        donationService.confirmDonation(orgid);
-        return ResponseEntity.ok().build();
+    @PostMapping("/{donation}/confirm")
+    public ResponseEntity<DonationReceiptDto> confirmDonation(@PathVariable Long donation) {
+        DonationReceiptDto receipt=donationService.confirmDonation(donation);
+        return ResponseEntity.ok(receipt);
     }
 
-    @PostMapping("/{id}/reject")
-    public ResponseEntity<Void> rejectDonation(@PathVariable Long id) {
-        donationService.rejectDonation(id);
+    @PostMapping("/{donation}/reject")
+    public ResponseEntity<Void> rejectDonation(@PathVariable Long donation) {
+        donationService.rejectDonation(donation);
         return ResponseEntity.ok().build();
     }
 }

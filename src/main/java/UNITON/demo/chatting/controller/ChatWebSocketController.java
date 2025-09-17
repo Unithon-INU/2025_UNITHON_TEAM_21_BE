@@ -1,6 +1,6 @@
 package UNITON.demo.chatting.controller;
 
-import UNITON.demo.chatting.dto.ChatMessageDto;
+/*import UNITON.demo.chatting.dto.ChatMessageDto;
 import UNITON.demo.chatting.service.ChatService;
 import UNITON.demo.login.dto.CustomerUserDetails;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -62,4 +62,4 @@ public class ChatWebSocketController {
         }
     }
 
-}
+}*/

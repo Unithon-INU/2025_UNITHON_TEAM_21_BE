@@ -100,6 +100,7 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
 
+
         // (2) JSON으로 내려줄 데이터 구성
         LoginResponseDto responseDto = LoginResponseDto.builder()
                 .accessToken(accessToken)
@@ -107,6 +108,8 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
                 .email(email)
                 .nickname(customerUserDetails.getNickname())
                 .message("로그인에 성공했습니다.")
+                .id(customerUserDetails.getUserId())
+                .userRole(0)
                 .build();
 
         // (3) JSON 변환 후 응답에 쓰기

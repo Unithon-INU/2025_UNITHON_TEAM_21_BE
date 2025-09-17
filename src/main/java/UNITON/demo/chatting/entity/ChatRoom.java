@@ -24,10 +24,6 @@ public class ChatRoom {
     private UserEntity user;
 
     @ManyToOne
-    @JoinColumn(name = "other_user_id")  // 유저 ↔ 유저용
-    private UserEntity otherUser;
-
-    @ManyToOne
     @JoinColumn(name = "organization_id")  // 유저 ↔ 기관용
     private Organization organization;
 

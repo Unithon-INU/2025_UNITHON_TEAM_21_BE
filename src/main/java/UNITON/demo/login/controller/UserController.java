@@ -2,14 +2,16 @@ package UNITON.demo.login.controller;
 
 import UNITON.demo.chatting.dto.UserDto;
 import UNITON.demo.chatting.dto.UserEmailDto;
+import UNITON.demo.login.dto.CustomerUserDetails;
+import UNITON.demo.login.dto.NicknameUpdateRequest;
 import UNITON.demo.login.entity.UserEntity;
 import UNITON.demo.login.repository.UserRepository;
+import UNITON.demo.login.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,6 +21,7 @@ import java.util.List;
 public class UserController {
 
     private final UserRepository userRepository;
+    private final UserService userService;
 
     // 🔹 이메일 목록 전체 조회 (내 이메일 제외 가능)
     @GetMapping("/all-emails")
@@ -50,6 +53,15 @@ public class UserController {
 
             return ResponseEntity.ok(result);
         }
+
+        @PutMapping("/nickname")
+        public ResponseEntity<String> updateNickname(
+                @RequestBody NicknameUpdateRequest request,
+                @AuthenticationPrincipal CustomerUserDetails userDetails) {
+
+            userService.updateNickname(userDetails.getUserId(), request.getNickname());
+            return ResponseEntity.ok("닉네임이 성공적으로 수정되었습니다.");
+    }
 }
 
 

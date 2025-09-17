@@ -34,6 +34,7 @@ public class CustomerUserDetails implements UserDetails {
         return userEntity.getEmail();
     }
 
+
     @Override
     public boolean isAccountNonExpired() {
         return true;  // 계정 만료 체크 안 함

@@ -1,0 +1,17 @@
+spring:
+  jwt:
+    secret: vmfhaltmskdlstkfkdgodyroqkfwkdbalroqkfwkdbalaaaaaaaaaaaaaaaabbbbb
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://uniton.cvyyg04qe2ul.ap-northeast-2.rds.amazonaws.com:3306/uniton
+    username: root
+    password: ryugh0210
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update  # 운영 시 validate 권장
+    properties:
+      hibernate:
+        format_sql: false
+        default_batch_fetch_size: 100
