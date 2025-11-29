@@ -1,4 +1,5 @@
 # 기봉사 – 기부와 봉사를 더 가깝게
+# ![기봉사 판넬](https://github.com/user-attachments/assets/9d2e48de-7a73-4ee8-8b90-3f552e5cce3c)
 
 > UNITHON 2025 인천대 21팀으로 진행한 팀 프로젝트입니다.
 
