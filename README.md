@@ -19,6 +19,7 @@
 
 ##  주요 기능
 
+
 ### 1) 봉사활동 조회
 
 - 카카오을 사용해 주변 봉사활동 위치를 시각적으로 표시
@@ -55,6 +56,7 @@
 
 
 ## 시연영상
+
 ## 봉사활동
 
 가벼운 UI/UX로 사용자가 봉사활동을 편하게 찾아 볼 수 있습니다
@@ -62,6 +64,7 @@
 ![KakaoTalk_20250626_212548201-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/d8062ba2-a916-4651-a2aa-fc29e8a8190e)
 
 ![KakaoTalk_20250626_212548201-ezgif com-video-to-gif-converter (1)](https://github.com/user-attachments/assets/735d7859-f890-41d4-b4ae-3374ee8d146e)
+
 
 ## 물품기부
 
