@@ -41,7 +41,8 @@
 
 ## 기술스택
 
-![KakaoTalk_20250627_232726161](https://github.com/user-attachments/assets/783925b3-ea79-4b04-8ca0-1379f2444b9e)
+<img width="740" height="502" alt="스크린샷 2026-04-19 191220" src="https://github.com/user-attachments/assets/507a2caa-a748-4e9d-a985-9bd6a85c1827" />
+
 
 
 ## 나의 역할 (Backend)
