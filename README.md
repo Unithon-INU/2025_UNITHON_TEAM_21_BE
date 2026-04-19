@@ -19,6 +19,7 @@
 
 ##  주요 기능
 
+<img width="880" height="484" alt="image" src="https://github.com/user-attachments/assets/97301639-127f-4ef1-992e-1f4753749bfa" />
 
 ### 1) 봉사활동 조회
 
@@ -68,6 +69,7 @@
 
 
 ## 물품기부
+
 
 지역아동센터가 기부물품 목록을 추가, 수정, 삭제가 가능합니다
 
